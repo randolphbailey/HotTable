@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var reservations;
+var reservations, waitlist;
 
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, "../", "home.html"));
@@ -45,17 +45,26 @@ app.post("/api/tables", function(req, res) {
                 console.log('New reservation added');
             });
         }
-        // console.log(reservations);
+        else {
+            fs.readFile(path.join(__dirname, "../", "waitlist.js"), "utf-8", function(err, data) {
+                waitlist = JSON.parse(data);
+                waitlist.push(req.body);
+                fs.writeFile(path.join(__dirname, "../", "waitlist.js"), JSON.stringify(waitlist), 'utf-8', function(err,data){
+                    if (err) throw err;
+                    console.log('Added to waitlist');
+                });
+            });
+        }
     }
-//   fs.writeFile(path.join(__dirname, "../", "tables.js"), "utf-8", function(err, data) {
-//         something = JSON.parse(data);
-//         console.log(something);
-//         res.json(something);
-//   });
 });
 
-app.post("/api/waitlist", function(req, res) {
-    //return stuff in waitlist.js
+app.get("/api/waitlist", function(req, res) {
+    let something;
+  fs.readFile(path.join(__dirname, "../", "waitlist.js"), "utf-8", function(err, data) {
+        something = JSON.parse(data);
+        console.log(something);
+        res.json(something);
+  });
 });
 
 module.exports = app;
