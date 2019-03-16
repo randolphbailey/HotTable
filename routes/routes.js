@@ -37,4 +37,29 @@ app.get("/api/waitlist", function(req, res) {
     res.json(waitlist);
 });
 
+
+app.post("/api/clear", function(req, res) {
+    reservations =[];
+    waitlist = [];
+})
+
+app.post("/api/done", function(req, res) {
+    console.log(reservations)
+   let theKey = Object.keys(req.body)[0];
+   let newReservations = reservations.filter(reservation => {
+       return reservation.customerID !== theKey
+   });
+   reservations = newReservations
+   console.log(reservations)
+//    for(let i=0;i<reservations.length;i++){
+//     if(reservations[i].customerID === theKey){
+//         let newReservations = reservations.filter(reservation => {
+//             return reservation.
+//         })
+//         reservations = newReservations
+//     }
+//    }
+
+})
+
 module.exports = app;

@@ -1,3 +1,3 @@
-let reservations = [{"customerName":"Randolph","phoneNumber":"832-287-9720","customerEmail":"randolphbailey@gmail.com","customerID":"5"},{"customerName":"kjlhlkj","phoneNumber":",mnbmnb","customerEmail":"lkhklj","customerID":"lkjhlk"},{"customerName":"blah","phoneNumber":"hello","customerEmail":"save","customerID":"34"},{"customerName":"sdf","phoneNumber":"sdfsdf","customerEmail":"sdfsdf","customerID":"sdfsdf"},{"customerName":"sdf","phoneNumber":"sdfsdf","customerEmail":"sdfsdf","customerID":"sdfsdf"}]
+let reservations = []
 
 module.exports = reservations
