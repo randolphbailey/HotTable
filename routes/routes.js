@@ -1,13 +1,12 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const fs = require('fs');
-var bodyParser = require('body-parser');
+let reservations = require('../tables')
+let waitlist = require('../waitlist')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var reservations, waitlist;
 
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, "../", "home.html"));
@@ -22,49 +21,20 @@ app.get('/reserve', (req,res)=>{
 })
 
 app.get("/api/tables", function(req, res) {
-    let something;
-  fs.readFile(path.join(__dirname, "../", "tables.js"), "utf-8", function(err, data) {
-        something = JSON.parse(data);
-        console.log(something);
-        res.json(something);
-  });
+  res.json(reservations)
 });
 
 app.post("/api/tables", function(req, res) {
-    fs.readFile(path.join(__dirname, "../", "tables.js"), "utf-8", function(err, data) {
-        reservations = JSON.parse(data);
-        console.log("The length is " + reservations.length);
-        writeFile(reservations);
-    });
-    function writeFile(reservations){
-        if(reservations.length < 5){
-            reservations.push(req.body);
-            console.log(reservations);
-            fs.writeFile(path.join(__dirname, "../", "tables.js"), JSON.stringify(reservations), 'utf-8', function(err,data){
-                if (err) throw err;
-                console.log('New reservation added');
-            });
-        }
-        else {
-            fs.readFile(path.join(__dirname, "../", "waitlist.js"), "utf-8", function(err, data) {
-                waitlist = JSON.parse(data);
-                waitlist.push(req.body);
-                fs.writeFile(path.join(__dirname, "../", "waitlist.js"), JSON.stringify(waitlist), 'utf-8', function(err,data){
-                    if (err) throw err;
-                    console.log('Added to waitlist');
-                });
-            });
-        }
+    let request = req.body;
+    if(reservations.length<5){
+        reservations.push(request)
+    } else {
+        waitlist.push(request)
     }
 });
 
 app.get("/api/waitlist", function(req, res) {
-    let something;
-  fs.readFile(path.join(__dirname, "../", "waitlist.js"), "utf-8", function(err, data) {
-        something = JSON.parse(data);
-        console.log(something);
-        res.json(something);
-  });
+    res.json(waitlist);
 });
 
 module.exports = app;
