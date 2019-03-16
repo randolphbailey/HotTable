@@ -1,8 +1,1 @@
-[
-    {
-        "customerName": "Randolph",
-        "phoneNumber": "832-287-9720",
-        "customerEmail": "randolphbailey@gmail.com",
-        "customerID": "5"
-    }
-]
+[{"customerName":"Randolph","phoneNumber":"832-287-9720","customerEmail":"randolphbailey@gmail.com","customerID":"5"},{"customerName":"kjlhlkj","phoneNumber":",mnbmnb","customerEmail":"lkhklj","customerID":"lkjhlk"}]

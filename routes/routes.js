@@ -34,13 +34,18 @@ app.post("/api/tables", function(req, res) {
     fs.readFile(path.join(__dirname, "../", "tables.js"), "utf-8", function(err, data) {
         reservations = JSON.parse(data);
         console.log("The length is " + reservations.length);
-        writeFile(reservations, res);
+        writeFile(reservations);
     });
-    function writeFile(reservations, res){
+    function writeFile(reservations){
         if(reservations.length < 5){
-            console.log(req.body);
+            reservations.push(req.body);
+            console.log(reservations);
+            fs.writeFile(path.join(__dirname, "../", "tables.js"), JSON.stringify(reservations), 'utf-8', function(err,data){
+                if (err) throw err;
+                console.log('New reservation added');
+            });
         }
-        console.log(reservations);
+        // console.log(reservations);
     }
 //   fs.writeFile(path.join(__dirname, "../", "tables.js"), "utf-8", function(err, data) {
 //         something = JSON.parse(data);
