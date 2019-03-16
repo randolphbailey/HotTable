@@ -1,0 +1,20 @@
+{
+  "name": "hottable",
+  "version": "1.0.0",
+  "description": "Table Reservations",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/randolphbailey/HotTable.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/randolphbailey/HotTable/issues"
+  },
+  "homepage": "https://github.com/randolphbailey/HotTable#readme"
+}
