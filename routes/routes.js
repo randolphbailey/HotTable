@@ -37,9 +37,9 @@ app.post("/api/tables", function(req, res) {
         writeFile(reservations, res);
     });
     function writeFile(reservations, res){
-        // if(reservations.length < 5){
-        //     fs.
-        // }
+        if(reservations.length < 5){
+            console.log(req.body);
+        }
         console.log(reservations);
     }
 //   fs.writeFile(path.join(__dirname, "../", "tables.js"), "utf-8", function(err, data) {
