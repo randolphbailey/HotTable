@@ -21,8 +21,8 @@
 			<br>
 
 			<div class="text-center">
-				<a href="/reserve"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button></a>
-				<a href="/"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
+				<a href="reserve.html"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button></a>
+				<a href="home.html"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
 			</div>
 		</div>
 
@@ -62,13 +62,11 @@
 </body>
 
 
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
+<!-- HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
 <script type="text/javascript">
 
-	// In this code, jQuery is used to "download" the data from our server
-	// We then dynamically display this content in our table. This is very similar to the group projects you just completed.
-	// It's also very similar to the NYT search application. In fact, I copied a ton of code from there.
-
+	// jQuery is used to "download" the data from our server
+	
 	function runTableQuery(){
 
 		// Here we get the location of the root page.
@@ -79,12 +77,12 @@
 		$.ajax({url: currentURL + "/api/tables", method: "GET"})
 			.done(function(tableData) {
 
-				// Here we are logging the URL so we have access to it for troubleshooting
+				// Log the URL
 				console.log("------------------------------------");
 				console.log("URL: " + currentURL + "/api/tables");
 				console.log("------------------------------------");
 
-				// Here we then log the NYTData to console, where it will show up as an object.
+				// Show data as an object
 				console.log(tableData);
 				console.log("------------------------------------")
 
@@ -100,7 +98,7 @@
 					var tableNumber = i + 1;
 
 
-					// Then display the remaining fields in the HTML (Section Name, Date, URL)
+					// Display the remaining fields in the HTML (Section Name, Date, URL)
 					$("#tableWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].customerID + "</h2>");
 				}
 			});
@@ -116,12 +114,12 @@
 		$.ajax({url: currentURL + "/api/waitlist", method: "GET"})
 			.done(function(waitlistData) {
 
-				// Here we are logging the URL so we have access to it for troubleshooting
+				// Log the URL
 				console.log("------------------------------------");
 				console.log("URL: " + currentURL + "/api/waitlist");
 				console.log("------------------------------------");
 
-				// Here we then log the NYTData to console, where it will show up as an object.
+				// Show data as an object
 				console.log(waitlistData);
 				console.log("------------------------------------")
 
@@ -142,7 +140,7 @@
 			});
 	}
 
-	// This function resets all of the data in our tables. This is intended to let you restart a demo.
+	// Reset data
 	function clearTable(){
 
 		var currentURL = window.location.origin;
@@ -159,7 +157,7 @@
 	})
 
 
-	// Run Queries!
+	// Run Queries
 	// ==========================================
 	runTableQuery();
 	runWaitListQuery();

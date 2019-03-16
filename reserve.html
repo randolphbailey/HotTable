@@ -22,8 +22,8 @@
 			<br>
 
 			<div class="text-center">
-				<a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
-				<a href="/"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
+				<a href="tables.html"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span> View Tables</button></a>
+				<a href="home.html"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
 			</div>
 		</div>
 
@@ -80,17 +80,14 @@
 </body>
 </html>
 
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
+<!-- HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
 
-	// In this code below we create the Front-end Javascript which "POSTS" our form data to our express server.
-	// In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-	// Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-	// In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+	// Front-end Javascript which "POSTS" our form data to our express server
 
 	$(".submit").on("click", function(){
 
-		// Here we grab the form elements
+		// Grab form elements
 		var newReservation = {
 			customerName: $('#reserve_name').val().trim(),
 			phoneNumber: $('#reserve_phone').val().trim(),
@@ -118,7 +115,7 @@
 	    		alert("Sorry you are on the wait list")
 	    	}
 
-	    	// Clear the form when submitting
+	    	// Clear form when submitting
     		$('#reserve_name').val("");
 			$('#reserve_phone').val("");
 			$('#reserve_email').val("");
